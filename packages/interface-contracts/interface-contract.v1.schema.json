@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://4444j99.github.io/conversation-corpus--surfaces/interface-contract.v1.schema.json",
+  "title": "INTERFACE_CONTRACT v1",
+  "description": "Read-only surface contract emitted by the ORGAN-II bridge for CCE engine outputs.",
+  "type": "object",
+  "required": ["contract_version", "source", "surfaces", "validation"],
+  "additionalProperties": false,
+  "properties": {
+    "contract_version": { "const": "interface-contract.v1" },
+    "source": {
+      "type": "object",
+      "required": ["engine", "state_model_ref", "validation_record_ref"],
+      "additionalProperties": false,
+      "properties": {
+        "engine": { "const": "conversation-corpus-engine" },
+        "state_model_ref": { "type": "string", "minLength": 1 },
+        "validation_record_ref": { "type": "string", "minLength": 1 }
+      }
+    },
+    "surfaces": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "kind", "operation"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "kind": { "enum": ["cli", "mcp", "web", "sdk"] },
+          "operation": { "type": "string", "minLength": 1 },
+          "description": { "type": "string" }
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "required": ["status", "checked_at"],
+      "additionalProperties": false,
+      "properties": {
+        "status": { "enum": ["pass", "fail", "unknown"] },
+        "checked_at": { "type": "string", "format": "date-time" }
+      }
+    }
+  }
+}
