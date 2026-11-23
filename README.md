@@ -6,6 +6,9 @@ The ORGAN-II bridge for [Conversation Corpus Engine](https://github.com/4444J99/
 
 Landing page: https://4444j99.github.io/conversation-corpus--surfaces/
 
+The waitlist form is intentionally inert until a submission sink is configured
+and tested; see [`apps/landing/README.md`](apps/landing/README.md).
+
 ## Constitutional boundary
 
 | Concern | Owner |
